@@ -1,0 +1,783 @@
+// Função : Cadastra alunos, Realizar matriculas, Cadastras turmas e alunos nas
+turmas
+// Cadastra docentes, Realizar lançamentos de notas, Realizar consulta de
+candidatos,
+// Realizar todos os tipos de consulta. (Turma(s), Alunos matriculados,
+Docentes, Notas)
+// Autor : Lucas.A
+// Data : 29/04/2019
+// Seção de Declarações
+
+var
+//Vetores//
+vNomeAluno,vEnderecoAluno: vetor [1..25] de caractere
+//Dados de Cadastro Aluno
+vNascimentoAluno,vCPFAluno,vCEPAluno: vetor [1..25] de caractere
+//Dados de Cadastro Aluno
+vNota1,vNota2,vMedia1: vetor [1..25] de real
+//Notas dos Alunos
+vDocentes,vNomeDocente,vEnderecoDocente: vetor [1..25] de caractere
+//Dados dos Docentes
+vFormacaoDocente,vFormacaoAluno: vetor [1..25] de caractere
+//Formação de Alunos e Docentes
+vNascimentoDocente,vCPFDocente,vCEPDocente:vetor [1..25] de caractere
+//Dados dos Docentes
+vNomeTurma,vMariculaAluno: vetor [1..25] de caractere
+//Dados dos Docentes
+vDocenteTurma,vTurnoTurma: vetor [1..25] de caractere
+//Dados de Turmas
+vTAluno: vetor [1..25] de caractere
+
+
+//Alocação de aluno em turmas
+vTDocente: vetor [1..25] de caractere
+//Alocação de docente em turmas
+vNomeprocesso: vetor [1..25] de caractere
+//Alunos no processo seletivo
+vTCPFAluno,vPCPFAluno: vetor [1..25] de caractere
+//CPF de Alunos em turmas e processo seletivo
+vTurmaAtiva: vetor [1..25] de caractere
+//Turmas com alunos cadastrados
+vStatus: vetor [1..25] de caractere
+//Status de Processo Seletivo (Ex: Aprovado, Reprovado, Em Avaliação)
+
+//Variaveis
+opcoes1,opcoes2:inteiro
+//Opçãoes de menu e sub-menu de inteiro
+ibusca1,ibusca2:inteiro
+//Opções de busca e sub-busca de inteiro
+rbusca1,rbusca2:real
+//Opções de busca e sub-busca de real
+cbusca1,cbusca2,cbusca3:caractere
+//Opções de busca e sub-busca de caractere
+i, l, c, x1:inteiro
+//Contador para repetição
+Add_Cancel:caractere
+//Adicionar ou Cancelar
+Y_N,S_N:caractere
+//Sim ou Não
+inicio
+
+{ //Teste de Aluno//
+vNomeAluno [1] := "Lucas Mateus"
+vEnderecoAluno [1] := "Rua escorpiao"
+vNascimentoAluno [1] := "31/10/1998"
+
+vCPFAluno [1] := "1234"
+vCEPAluno [1] := "31872-200"
+vFormacaoAluno [1] := "Tecnico"
+
+vNomeAluno [2] := "Lucas Alves"
+vEnderecoAluno [2] := "Av. Serra"
+vNascimentoAluno [2] := "31/10/1995"
+vCPFAluno [2] := "2234"
+vCEPAluno [2] := "12845-600"
+vFormacaoAluno [2] := "Superior"
+
+//Teste de Docente//
+
+vNomeDocente [1] := "Teacher"
+vEnderecoDocente [1] := "aaaaaaaaa 8995"
+vFormacaoDocente [1] := "Superior"
+vNascimentoDocente [1] := "15/06/1977"
+vCPFDocente [1] := "123"
+vCEPDocente [1] := "32151-300"
+
+//Teste de Turma//
+
+vNomeTurma [1] := "TDS04N"
+vNomeTurma [5] := "TDS05N" }
+
+//Menu de introdução//
+repita
+limpatela
+
+escreval("Dados do Processo Seletivo.")
+escreval()
+escreval("Informe selecione umas das opções abaixo:")
+escreval()
+
+escreval("1. Alunos.")
+escreval("2. Docentes.")
+escreval("3. Turmas.")
+escreval("4. Notas.")
+escreval("5. Imprimir informações gerais.")
+escreval("6. Encerrar Programa.")
+escreval()
+leia(opcoes1)
+limpatela
+
+escolha (opcoes1)
+caso 1
+
+//Menu de cadastro do e registro de alunos//
+escreval("Selecione a opção desejada:")
+escreval()
+escreval("1. Matricula de Alunos.")
+escreval("2. Registro de Alunos.")
+escreval("3. Cadastro para processo seletivo.")
+escreval("4. Alteração de status do aluno em processo.")
+escreval("5. Remover Alunos.")
+escreval("6. Voltar.")
+escreval()
+leia(opcoes2)
+limpatela
+
+escolha (opcoes2)
+caso 1
+limpatela
+
+//Menu de cadastro//
+repita
+escreval(" Dados de cadastro")
+escreval("")
+
+para l de 1 ate 25 faca
+
+se(vNomeAluno[l] = "")ou(vNomeAluno[l] = ".")entao
+
+escreval("Por gentilesa preencha os dados abaixo para realizar o cadastro
+do ",l,"o aluno.")
+escreval("Nome completo:")
+leia(vNomeAluno[l])
+escreval("Ano de nascimento:(Ex: 00/00/0000x)")
+leia(vNascimentoAluno[l])
+escreval("Informe o CPF:(Ex: 000.000.000-00)")
+leia(vCPFAluno[l])
+escreval("Informe o endereço completo com complemento:")
+leia(vEnderecoAluno[l])
+escreval("Informe o CEP:(Ex: 00000-000)")
+leia(vCEPAluno[l])
+escreval("Formação Profissional")
+leia(vFormacaoAluno[l])
+escreval()
+escreval("Cadastro realizado com sucesso.")
+
+fimse
+
+escreval("A ",l,"o lacuna possui um Aluno cadastrado deseja ir para a
+proxima Y/N?")
+leia(Y_N)
+escreval()
+
+se(Y_N = "N")entao
+
+interrompa
+
+fimse
+
+fimpara
+
+escreval()
+escreval("Caso a capacidade maxima de armazenamento seja alcançada
+remova um aluno!")
+escreval()
+escreva("Deseja adicionar outro aluno Y/N? ")
+leia(Y_N)
+ate(Y_N = "N")
+
+caso 2
+
+//Menu de busca de alunos por CPF//
+repita
+limpatela
+escreval("Menu de busca de alunos por CPF.")
+escreval()
+
+escreval("Informe o CPF do aluno:")
+leia(cbusca1)
+
+limpatela
+para l de 1 ate 25 passo 1 faca
+
+se(cbusca1 = vCPFAluno[l])entao
+
+escreval("Segue os dados solicitados: ")
+escreval()
+escreval("Nome: ",vNomeAluno[l]:13)
+escreval("Ano de nascimento: ",vNascimentoAluno[l]:10)
+escreval("CPF: ",vCPFAluno[l]:15)
+escreval("Formação: ",vFormacaoAluno[l]:10)
+escreval("Turma: ",vNomeTurma[l]:10)
+escreval("Nota Atual: ",vNota1[l]:3)
+
+fimse
+fimpara
+
+escreval()
+escreval("Caso não apareça nenhum resultado o CPF não foi encontrado.")
+escreval()
+escreva("Deseja busca outra dados de outro aluno Y/N? ")
+leia(Y_N)
+ate(Y_N = "N")
+
+caso 3
+
+//Cadastro no processo seletivo//
+escreval(" Processo Seletivo")
+escreval()
+
+escreval("Informe o CPF do aluno(a) que participara do processo:")
+leia(cbusca1)
+escreval()
+
+para l de 1 ate 25 passo 1 faca
+
+se(cbusca1 = vCPFAluno[l])entao
+
+escreva("Para confirma inscrição do aluno ",vNomeAluno[l]," aperte Y/N:
+")
+leia(Y_N)
+
+se(Y_N = "Y")entao
+
+vNomeprocesso[l] := vNomeAluno[l]
+vPCPFAluno[l] := vCPFAluno[l]
+
+escreval()
+escreval("Aluno cadastrado no processo!")
+
+fimse
+fimse
+fimpara
+
+caso 4
+
+//Status de Alunos no processo seletivo
+repita
+limpatela
+
+escreval("Informe o CPF para verificação:")
+leia(cbusca1)
+escreval()
+
+para l de 1 ate 25 faca
+se(cbusca1 = vPCPFAluno[l])entao
+
+escreval("Informe o status do aluno em processo: (Ex: Aprovado,
+Reprovado, Em Avaliação)")
+leia(vStatus[l])
+interrompa
+
+fimse
+
+fimpara
+escreval()
+escreval("Caso não carregue nenhum dado o CPF não foi encontrado !")
+escreval()
+escreva("Deseja Informa o Status de outro aluno em processo S/N? ")
+leia(S_N)
+ate(S_N = "N")
+
+caso 5
+
+//Remoção de Alunos//
+
+limpatela
+escreval("Informe o CPF do Aluno:")
+leia(cbusca1)
+
+para l de 1 ate 25 faca
+se(cbusca1 = vCPFAluno[l])entao
+limpatela
+escreval("Tem cesetsa que deseja remover o aluno ",vNomeAluno[l],"?")
+escreva("Y/N? ")
+leia(Y_N)
+escreval()
+
+se(Y_N = "Y")entao
+
+para l de 1 ate 25 faca
+
+se(cbusca1 = vCPFAluno[l])entao
+
+escreval("Segue os dados removidos abaixo: ")
+escreval()
+escreval("Nome: ",vNomeAluno[l]:15)
+escreval("Ano de nascimento: ",vNascimentoAluno[l]:10)
+escreval("CPF: ",vCPFAluno[l]:15)
+escreval("Formação: ",vFormacaoAluno[l]:10)
+escreval("Turma: ",vNomeTurma[l]:10)
+escreval("Nota Atual: ",vNota1[l]:3)
+escreval("Endereço: ",vEnderecoAluno[l]:15)
+escreval("CEP: ",vCEPAluno[l]:10)
+
+vNomeAluno[l] := ""
+vNascimentoAluno[l] := ""
+vCPFAluno[l] := ""
+vFormacaoAluno[l] := ""
+vNomeTurma[l] := ""
+vNota1[l] := 0
+vEnderecoAluno[l]:= ""
+vCEPAluno[l]:=""
+fimse
+
+se(Y_N = "N")entao
+
+escreval("Aluno ",cbusca1," continua no sistema.")
+
+fimse
+fimpara
+fimse
+fimse
+fimpara
+
+escreval()
+escreval("Caso não apareça nenhum resultado o CPF não foi encontrado.")
+
+caso 6
+
+fimescolha
+
+caso 2
+limpatela
+
+escreval("Selecione uma das opções abaixo:")
+escreval()
+escreval("1. Cadastro de Docentes.")
+escreval("2. Registro de Docentes.")
+
+escreval("3. Remover Docentes.")
+escreval("4. Voltar.")
+escreval()
+leia(opcoes1)
+limpatela
+
+escolha opcoes1
+
+caso 1
+
+//Cadastro de Docentes//
+repita
+limpatela
+
+para l de 1 ate 25 faca
+
+se(vNomeDocente[l] = "")ou(vNomeDocente[l] = ".")entao
+
+escreval("Por gentilesa preencha os dados abaixo para realizar o cadastro
+do ",l,"o docente:")
+escreval("Nome completo:")
+leia(vNomeDocente[l])
+escreval("Ano de nascimento:(Ex: 00/00/0000)")
+leia(vNascimentoDocente[l])
+escreval("Informe o CPF:(Ex: 000.000.000-00)")
+leia(vCPFDocente[l])
+escreval("Informe o endereço completo com complemento:")
+leia(vEnderecoDocente[l])
+escreval("Informe o CEP:(00000-000)")
+leia(vCEPDocente[l])
+escreval("Formação Profissional")
+leia(vFormacaoDocente[l])
+
+fimse
+
+escreval("A ",l,"o lacuna possui um docente cadastrado deseja ir para a
+proxima Y/N?")
+leia(Y_N)
+escreval()
+
+se(Y_N = "N")entao
+
+interrompa
+
+fimse
+
+fimpara
+
+escreval()
+escreval("Caso a capacidade maxima de armazenamento seja alcançada
+remova um aluno!")
+escreval()
+escreva("Deseja adicionar outro docente Y/N? ")
+leia(Y_N)
+ate(Y_N = "N")
+
+caso 2
+
+//Menu de busca dos Docentes por CPF//
+repita
+escreval("Informe o CPF do docente:")
+leia(cbusca1)
+
+limpatela
+para l de 1 ate 25 passo 1 faca
+se(cbusca1 = vCPFDocente[l])entao
+
+escreval("Segue os dados solicitados: ")
+
+escreval()
+escreval("Nome: ",vNomeDocente[l]:10)
+escreval("Ano de nascimento: ",vNascimentoDocente[l]:10)
+escreval("CPF: ",vCPFDocente[l]:15)
+escreval("Formação: ",vFormacaoDocente[l]:10)
+escreval("Turma: ",vNomeTurma[l]:10)
+
+fimse
+fimpara
+
+escreval()
+escreval("Caso não apareça nenhum resultado o CPF não foi encontrado.")
+escreval()
+escreval("Deseja busca outra dados de outro docente Y/N? ")
+leia(Y_N)
+ate(Y_N = "N")
+
+caso 3
+
+//Remoção de Docentes//
+
+repita
+limpatela
+
+escreval("Informe o CPF do docente:")
+leia(cbusca1)
+
+limpatela
+
+para l de 1 ate 25 faca
+
+se(cbusca1 = vCPFDocente[l])entao
+
+escreva("Tem cesetsa que deseja remover o docente ",vNomeDocente[l],"
+Y/N? ")
+leia(Y_N)
+
+se(Y_N = "Y")entao
+
+para l de 1 ate 25 faca
+
+se(vCPFDocente[l] = cbusca1)entao
+
+escreval("Segue os dados removidos abaixo: ")
+escreval()
+escreval("Nome: ",vNomeDocente[l]:10)
+escreval("Ano de nascimento: ",vNascimentoDocente[l]:10)
+escreval("CPF: ",vCPFDocente[l]:15)
+escreval("Formação: ",vFormacaoDocente[l]:10)
+escreval("Turma: ",vNomeTurma[l]:10)
+
+vNomeDocente[l] := ""
+vNascimentoDocente[l] := ""
+vCPFDocente[l] := ""
+vFormacaoDocente[l] := ""
+vNomeTurma[l] := ""
+
+fimse
+fimpara
+
+se(Y_N = "N")entao
+
+escreval("Docente ",cbusca1," continua no sistema.")
+
+fimse
+fimse
+fimse
+
+fimpara
+
+escreval()
+escreval("Caso não apareça nenhum resultado o CPF não foi encontrado.")
+escreval()
+escreval("Deseja busca outra dados de outro docente Y/N? ")
+leia(Y_N)
+ate(Y_N = "N")
+
+caso 4
+fimescolha
+
+caso 3
+
+//Menu de turmas de docentes e Alunos//
+
+escreval("Turmas")
+escreval()
+escreval("1. Criar nova turma(s).")
+escreval("2. Adicionar Alunos.")
+escreval("3. Adicionar Docente.")
+escreval("4. Buscar Turmas.")
+escreval("5. Voltar.")
+escreval()
+escreval("Selecione umas das opcoes acima:")
+leia(opcoes1)
+
+escolha opcoes1
+
+caso 1
+limpatela
+
+//Dados de criação de turma//
+para l de 1 ate 25 faca
+
+se(vNomeTurma[l]="")entao
+
+escreva("Informe o nome da turma: ")
+leia(vNomeTurma[l])
+
+escreval("Turma criada com sucesso!")
+
+fimse
+
+escreval("A ",l,"o lacuna possui uma Turma cadastrado deseja ir para a
+proxima Y/N?")
+leia(Y_N)
+
+se(Y_N = "N")entao
+
+interrompa
+
+fimse
+
+fimpara
+
+caso 2
+
+//Acrecimo de alunos em turmas
+repita
+limpatela
+
+escreval("Informe o nome da turma:")
+leia(cbusca1)
+escreval()
+
+para l de 1 ate 25 faca
+se(cbusca1 = vNomeTurma[l])entao
+
+escreval("Informe o CPF do aluno:")
+leia(cbusca2)
+escreval()
+interrompa
+
+fimse
+
+fimpara
+
+para l de 1 ate 25 faca
+se(cbusca2 = vCPFAluno[l])entao
+
+vTCPFAluno[l] := vCPFAluno[l]
+vTAluno[l] := cbusca2
+
+escreval("O aluno portador do CPF ",vCPFAluno[l]," foi cadastrado com
+sucesso a turma ",vTAluno[l],".")
+escreval()
+interrompa
+
+fimse
+fimpara
+
+escreva("Deseja adicionar outro aluno em sala S/N? ")
+leia(S_N)
+ate(S_N = "N")
+
+caso 3
+
+//Adicionar docentes em turmas
+repita
+limpatela
+
+escreval("Informe o nome da Turma:")
+
+leia(cbusca1)
+escreval()
+
+para l de 1 ate 25 faca
+se(cbusca1 = vNomeTurma[l])entao
+
+escreval("Informe o CPF do Docente:")
+leia(cbusca2)
+escreval()
+interrompa
+
+fimse
+
+fimpara
+
+para l de 1 ate 25 faca
+se(cbusca2 = vCPFDocente[l])entao
+
+vTDocente[l]:= cbusca1
+
+escreval("O docente portador do CPF ",vCPFDocente[l]," foi cadastrado
+com sucesso a turma ",vTDocente[l],".")
+escreval()
+interrompa
+
+fimse
+fimpara
+
+escreva("Deseja adicionar outro docente em sala S/N? ")
+leia(S_N)
+ate(S_N = "N")
+
+caso 4
+
+//Menu de busca das Turmas por nome//
+
+escreval("Informe o nome da Turma:")
+leia(cbusca1)
+
+para l de 1 ate 25 passo 1 faca
+
+se(cbusca1 = vTAluno[l])entao
+
+escreval()
+escreval("----------------------------------------------------------------------------
+----------------------------------------------")
+escreval(l,"o .CPF: ",vTCPFAluno[l]:20," | Nome: ",vNomeAluno[l]:
+15,"Nota: ",vNota1[l]," | Turma: ",vTAluno[l]:20,".")
+escreval("----------------------------------------------------------------------------
+----------------------------------------------")
+
+fimse
+fimpara
+
+caso 5
+fimescolha
+
+caso 4
+
+//Menu de notas dos Alunos//
+
+limpatela
+escreval("Notas")
+escreval()
+escreval("1. Adicionar Notas.")
+escreval("2. Buscar Notas.")
+escreval("3. Voltar.")
+escreval()
+
+
+escreval("Selecione umas das opcoes acima:")
+leia(opcoes1)
+
+escolha opcoes1
+
+caso 1
+
+//Adicionar notas para alunos//
+repita
+limpatela
+escreval("Informe o CPF do aluno que recebera a nota abaixo:")
+leia(cbusca1)
+limpatela
+
+para l de 1 ate 25 faca
+
+se(cbusca1 = vTCPFAluno[l])entao
+
+escreval("Informa a nota do aluno abaixo:")
+leia(vNota1[l])
+escreval()
+escreval("Nota ",vNota1[l]," cadastrada ao aluno ",vNomeAluno[l],"
+portado do CPF ",vTCPFAluno[l],".")
+escreval()
+
+fimse
+fimpara
+
+escreval("Caso não apareça nenhum resultado o CPF não foi encontrado.")
+escreval()
+
+escreval("Deseja adicionar nota a outro aluno Y/N? ")
+leia(Y_N)
+ate(Y_N = "N")
+
+caso 2
+
+//Busca de notas//
+
+escreval("Informe o CPF do aluno abaixo:")
+leia(cbusca1)
+
+para l de 1 ate 1 faca
+
+se(rbuscac = vCPFAluno[l])entao
+
+escreval("Aluno: ",vNomeAluno[l])
+escreval("CPF: ",vCPFAluno[l])
+escreval("Nota: ",vNota1[l])
+escreval("Turma: ",vNometurma[l])
+escreval("Docente: ",vDocenteTurma[l])
+
+fimse
+
+fimpara
+caso 3
+fimescolha
+
+caso 5
+
+//Impressação de todas as informações cadastradas
+escreval("Informações Gerais:")
+escreval()
+
+Escreval(" Alunos Matriculados ")
+escreval()
+para l de 1 ate 25 passo 1 faca
+se(vNomeAluno[l] = "")entao
+
+senao
+escreval("Nome:",vNomeAluno[l]:15," | CPF:",vCPFAluno[l]:10," |
+Endereço:",vEnderecoAluno[l]:12," | CEP:",vCEPAluno[l])
+fimse
+fimpara
+
+escreval()
+Escreval(" Alunos Matriculados em Turmas")
+escreval()
+
+para l de 1 ate 25 passo 1 faca
+se(vTAluno[l] = "")entao
+senao
+escreval("Nome:",vNomeAluno[l]:15," | CPF:",vTCPFAluno[l]:10," |
+Turma:",vTAluno[l]:10," | Nota:",vNota1[l]:10)
+fimse
+fimpara
+
+escreval()
+escreval(" Docentes Cadastrados")
+escreval()
+
+para l de 1 ate 25 passo 1 faca
+se(vNomeDocente[l] = "")entao
+
+senao
+escreval("Nome:",vNomeDocente[l]:15," | CPF:",vCPFDocente[l]:10," |
+Formação:",vFormacaoDocente[l]:10," | Turma:",VTDocente[l])
+fimse
+fimpara
+
+escreval()
+escreval(" Alunos em Processo Seletivo")
+escreval()
+
+para l de 1 ate 25 passo 1 faca
+se(vNomeProcesso[l] = "")entao
+senao
+escreval("Nome:",vNomeProcesso[l]:15," | CPF:",vPCPFAluno[l]:10," |
+Status: ",vStatus[l]:15)
+fimse
+fimpara
+
+caso 6
+
+//Encerrar programa//
+escreval("O programa foi encerrado.")
+
+fimalgoritmo
+
+outrocaso
+
+escreval("Opção invalida!")
+
+fimescolha
+
+escreval()
+escreval("Deseja voltar ao menu principal?")
+escreva("S/N? ")
+leia(S_N)
+
+ate(S_N = "N")
+
+fimalgoritmo
